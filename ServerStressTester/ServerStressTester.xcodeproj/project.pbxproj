@@ -11,6 +11,7 @@
 		26A5EFCC1AB3AA3B00F6F87B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26A5EFC71AB3AA3B00F6F87B /* Images.xcassets */; };
 		26A5EFCE1AB3AA3B00F6F87B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26A5EFC91AB3AA3B00F6F87B /* Main.storyboard */; };
 		26A5EFCF1AB3AA3B00F6F87B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5EFCA1AB3AA3B00F6F87B /* ViewController.swift */; };
+		26A5EFD11AB3AD3600F6F87B /* TestEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5EFD01AB3AD3600F6F87B /* TestEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		26A5EFC81AB3AA3B00F6F87B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26A5EFC91AB3AA3B00F6F87B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		26A5EFCA1AB3AA3B00F6F87B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26A5EFD01AB3AD3600F6F87B /* TestEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				26A5EFC61AB3AA3B00F6F87B /* AppDelegate.swift */,
 				26A5EFCA1AB3AA3B00F6F87B /* ViewController.swift */,
+				26A5EFD01AB3AD3600F6F87B /* TestEngine.swift */,
 				26A5EFC91AB3AA3B00F6F87B /* Main.storyboard */,
 				26A5EFC81AB3AA3B00F6F87B /* Info.plist */,
 				26A5EFC71AB3AA3B00F6F87B /* Images.xcassets */,
@@ -132,6 +135,7 @@
 			files = (
 				26A5EFCF1AB3AA3B00F6F87B /* ViewController.swift in Sources */,
 				26A5EFCB1AB3AA3B00F6F87B /* AppDelegate.swift in Sources */,
+				26A5EFD11AB3AD3600F6F87B /* TestEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
