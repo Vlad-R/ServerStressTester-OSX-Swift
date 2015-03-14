@@ -74,6 +74,7 @@
 				26A5EF9F1AB3A85200F6F87B /* Sources */,
 				26A5EFA01AB3A85200F6F87B /* Frameworks */,
 				26A5EFA11AB3A85200F6F87B /* Resources */,
+				26A5EFD21AB3B5C200F6F87B /* Check Number of Lines in files */,
 			);
 			buildRules = (
 			);
@@ -127,6 +128,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26A5EFD21AB3B5C200F6F87B /* Check Number of Lines in files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Number of Lines in files";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Throw a warning when a file exceeds 300 lines\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 wc -l | awk '$1 > 300 && $2 != \"total\" { print $2 \":1: warning: file has more than 300 lines\" }'";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		26A5EF9F1AB3A85200F6F87B /* Sources */ = {
