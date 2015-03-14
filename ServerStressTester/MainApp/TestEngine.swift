@@ -14,7 +14,8 @@ private struct Constants {
 
 class TestEngine {
     private let semaphore = dispatch_semaphore_create(1)
-    private let test_concurrent_queue = dispatch_queue_create("com.vr.TestQueue", DISPATCH_QUEUE_CONCURRENT)
+    private let test_concurrent_queue = dispatch_queue_create("com.vr.ConcurrentQueue", DISPATCH_QUEUE_CONCURRENT)
+    private let test_serial_queue = dispatch_queue_create("com.vr.SerialQueue", DISPATCH_QUEUE_SERIAL)
     
     private let session: NSURLSession
     private let url: NSURL
@@ -33,5 +34,50 @@ class TestEngine {
         sessionConfig.HTTPAdditionalHeaders = HTTPHeaders
         
         self.session = NSURLSession(configuration: sessionConfig)
+    }
+    
+    func beginTest() {
+        println("Starting Test...")
+        
+        dispatch_async(test_concurrent_queue) {
+            for index in 0..<self.repetitionCount {
+                if index % Constants.RequestBatchSize == 0 {
+                    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+                }
+                
+                let request = NSMutableURLRequest()
+                request.URL = self.url
+                
+                let task = self.session.dataTaskWithRequest(request) {
+                    (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+                    
+                    dispatch_async(self.test_serial_queue) {
+                        ++self.totalRequestsMade
+                        println("Request Number: \(self.totalRequestsMade)")
+                        
+                        if error == nil {
+                            ++self.successes
+                            println("Success")
+                        } else {
+                            ++self.failures
+                            println("Fail")
+                            println(error.localizedDescription)
+                        }
+                        
+                        if (self.totalRequestsMade % Constants.RequestBatchSize == 0) ||
+                            ((self.totalRequestsMade % Constants.RequestBatchSize != 0) && (self.totalRequestsMade == self.repetitionCount)) {
+                                dispatch_semaphore_signal(self.semaphore)
+                        }
+                        
+                        if self.totalRequestsMade == self.repetitionCount {
+                            println("Test Completed:")
+                            println("Successes: \(self.successes)")
+                            println("Failures: \(self.failures)")
+                        }
+                    }
+                }
+                task.resume()
+            }
+        }
     }
 }
